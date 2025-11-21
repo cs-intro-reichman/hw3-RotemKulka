@@ -25,43 +25,107 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2>0){
+		for (int i=0; i<x2; i++){
+			x1++;
+		}
+		} else if (x2<0){
+		for (int i=x2; i<0; i++){
+			x1--;
+		}
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2>0){
+		for (int i=0; i<x2; i++){
+			x1--;
+		}
+		} else if (x2<0){
+		for (int i=x2; i<0; i++){
+			x1++;
+		}
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
-	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int times(int x1, int x2) { //-2 -3 = 6
+		int sum = 0;
+		if (x2>0){
+			for (int i=0; i<x2; i++){
+				sum = plus(sum, x1);
+		}
+		} else if (x2<0){
+			for (int i=x2; i<0; i++){
+				sum = minus(sum, x1);
+		}
+		} else {
+			return 0;
+		}
+		return sum;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int count = 1;
+		if (n>0) {
+			for (int i=0; i<n; i++){
+				count = times(count, x);
+			}
+		} else {
+			return 1;
+		}
+		return count;
 	}
 
 	// Returns the integer part of x1 / x2 
-	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int div(int x1, int x2) { 
+		if (x1==0 || x2==0){
+			return 0;
+		}
+		boolean negative = (x1<0) != (x2<0);
+		if (x1<0){
+			x1 = minus(0, x1);
+		}
+		if (x2<0){
+			x2 = minus (0, x2);
+		}
+		int i = 0;
+		int count = x1;
+		while (count>=x2) {
+		count = minus(count, x2);
+		i++;
+		}
+		if (negative){
+			return minus(0,i);
+		} else {
+			return i;
+		}
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int mod = minus(x1, times(div(x1, x2), x2));
+		return mod;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
-	}	  	  
+		if (x<=0) {
+			return 0;
+		}
+		int i = 0;
+		int count = 0;
+		while (count<x){
+			i++;
+			count = pow(i, 2);
+		}
+		if (count>x){
+			return minus(i, 1);
+		}
+		return i;
+	} 	  
 }
